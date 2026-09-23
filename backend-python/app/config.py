@@ -9,7 +9,6 @@ load_dotenv()
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 
-# Decode Base64 credentials
 b64_creds = os.getenv("GOOGLE_CREDENTIALS_B64")
 if b64_creds:
     creds_json = base64.b64decode(b64_creds).decode('utf-8')

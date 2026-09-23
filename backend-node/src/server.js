@@ -15,17 +15,13 @@ const io = new Server(server, {
   }
 });
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use('/', apiRoutes);
 
-// Init WebSockets
 socketService.init(io);
 
-// Start Server
 server.listen(PORT, () => {
   console.log(`Node.js REST API & WebSocket server running on port ${PORT}`);
 });

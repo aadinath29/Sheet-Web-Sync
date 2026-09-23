@@ -31,7 +31,6 @@ class SheetService:
             body=body
         ).execute()
         
-        # Update snapshot immediately
         while len(self.snapshot) <= index:
             self.snapshot.append(["", "", ""])
         self.snapshot[index] = row_data
