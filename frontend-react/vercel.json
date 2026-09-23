@@ -1,0 +1,9 @@
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "build": {
+    "env": {
+      "REACT_APP_PYTHON_API_URL": "<RENDER_PYTHON_URL>",
+      "REACT_APP_NODE_API_URL": "<RENDER_NODE_URL>"
+    }
+  }
+}

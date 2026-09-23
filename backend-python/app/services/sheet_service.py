@@ -9,7 +9,7 @@ class SheetService:
     def __init__(self):
         self.service = build('sheets', 'v4', credentials=GOOGLE_CREDS)
         self.sheet = self.service.spreadsheets()
-        self.RANGE_NAME = 'Sheet1!A1:C10'
+        self.RANGE_NAME = 'Sheet1!A1:C4'
         self.snapshot = []
 
     def fetch_data(self):
@@ -31,6 +31,7 @@ class SheetService:
             body=body
         ).execute()
         
+        # Update snapshot immediately
         while len(self.snapshot) <= index:
             self.snapshot.append(["", "", ""])
         self.snapshot[index] = row_data
