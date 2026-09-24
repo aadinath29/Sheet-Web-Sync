@@ -18,7 +18,7 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${NODE_API_URL}/api/rows`);
+        const response = await axios.get(`${NODE_API_URL}/api/rows`, { timeout: 10000 });
         setRows(response.data.rows || []);
         setLoading(false); // Only hide loading screen on success
       } catch (error) {
