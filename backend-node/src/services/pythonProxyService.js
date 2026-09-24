@@ -2,7 +2,7 @@ const axios = require('axios');
 const { PYTHON_API_URL } = require('../config/env');
 
 exports.fetchRows = async () => {
-  const response = await axios.get(`${PYTHON_API_URL}/rows`, { timeout: 60000 });
+  const response = await axios.get(`${PYTHON_API_URL}/rows`);
   return response.data;
 };
 
