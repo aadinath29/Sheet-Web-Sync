@@ -4,7 +4,7 @@ A tiny full‑stack demo that **synchronizes a Google Sheet in real‑time** bet
 
 ---
 
-## 📖 Project Overview
+##  Project Overview
 
 - **Python (FastAPI)** – The *source of truth*. It talks directly to the Google Sheets API, polls the sheet every few seconds and notifies the Node server when an external edit occurs.
 - **Node.js (Express + Socket.io)** – A lightweight *proxy & WebSocket hub*. It forwards the React API calls to Python and broadcasts any updates to all connected browsers.
@@ -17,7 +17,7 @@ The whole stack runs locally on three ports:
 
 ---
 
-## 🏗️ Architecture Diagram (textual)
+##  Architecture Diagram (textual)
 ```
 Google Sheet   <-- Service Account -->   Python FastAPI (8000)
       ▲                               │
@@ -31,7 +31,7 @@ Google Sheet   <-- Service Account -->   Python FastAPI (8000)
 
 ---
 
-## 🔧 Prerequisites
+##  Prerequisites
 | Tool | Minimum Version |
 |------|-----------------|
 | Python | 3.9 |
@@ -52,7 +52,7 @@ Google Sheet   <-- Service Account -->   Python FastAPI (8000)
 
 ---
 
-## ⚙️ Environment Variables (`.env` at project root)
+##  Environment Variables (`.env` at project root)
 Create a `.env` file in the repository root (it is already ignored by `.gitignore`).
 ```dotenv
 # ── Python backend ──────────────────────
@@ -73,7 +73,7 @@ Copy the output and paste it as the value of `GOOGLE_CREDENTIALS_B64`.
 
 ---
 
-## 🚀 Local Development Setup
+##  Local Development Setup
 ```bash
 # 1️⃣ Clone the repo (already done for you)
 # git clone git@github.com:aadinath29/Sheet-Web-Sync.git
@@ -104,7 +104,7 @@ Open your browser at **http://localhost:5173** – you should see the sheet cont
 
 ---
 
-## 📡 How Synchronization Works
+##  How Synchronization Works
 1. **Initial Load** – React calls `GET /api/rows` → Node forwards to Python → Python reads the sheet and returns the rows.
 2. **Edit from UI** – User edits a row → React `POST /api/rows/:index` → Node forwards to Python → Python writes to the sheet and updates its in‑memory snapshot.
 3. **External Edit** – Someone edits the Google Sheet directly (or via another client). Python’s background poll detects the change → Python POSTs the new data to Node’s webhook (`/sheet-data-update`).
@@ -114,7 +114,7 @@ Because the **Python service is the only component that talks to Google Sheets**
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 ```
 Google Sheet Web Syncronization/
 ├─ backend-python/          # FastAPI source (app/ folder)
@@ -126,5 +126,3 @@ Google Sheet Web Syncronization/
 ```
 
 ---
-
-**Happy hacking!** If you run into any issues, check the console logs of each service – they output helpful messages about connections and synchronization.
