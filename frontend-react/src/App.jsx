@@ -14,14 +14,17 @@ function App() {
 
   // Initial Load & Socket Setup
   useEffect(() => {
+    let retryTimeout;
+
     const fetchData = async () => {
       try {
         const response = await axios.get(`${NODE_API_URL}/api/rows`);
         setRows(response.data.rows || []);
+        setLoading(false); // Only hide loading screen on success
       } catch (error) {
-        console.error("Failed to load initial data:", error);
-      } finally {
-        setLoading(false);
+        console.error("Servers might be sleeping (Cold Start). Retrying in 5 seconds...", error);
+        // Try again in 5 seconds without hiding the loading screen
+        retryTimeout = setTimeout(fetchData, 5000);
       }
     };
 
@@ -37,6 +40,7 @@ function App() {
 
     return () => {
       socket.off('sheet-updated');
+      if (retryTimeout) clearTimeout(retryTimeout);
     };
   }, []);
 
